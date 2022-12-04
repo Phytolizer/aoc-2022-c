@@ -3,7 +3,7 @@ project(
     'c',
     version: '2022.0.0',
     default_options: [
-        'c_std=c11',
+        'c_std=gnu11',
         'warning_level=3',
         'default_library=static',
     ],

@@ -17,7 +17,6 @@ struct string dec01_run(struct string path, size_t part) {
     size_t max = 0;
 
     while (better_getline(&line, f)) {
-        printf(STRING_FMT "\n", STRING_ARG(line));
         if (line.length == 0) {
             if (curr_total > max) {
                 max = curr_total;
@@ -28,7 +27,7 @@ struct string dec01_run(struct string path, size_t part) {
 
         char* endp;
         long num = strtol(line.data, &endp, 10);
-        if (*endp != 0) {
+        if (endp - line.data != (ptrdiff_t)line.length) {
             fprintf(stderr, "Invalid number: %s\n", line.data);
             exit(1);
         }
