@@ -1,3 +1,4 @@
+#include <aoc2022_config.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -11,7 +12,7 @@ const char* example_inputs[2] = {
 
 #define AOC_TEST(day, expected1s, expected1f, expected2s, expected2f) \
     do { \
-        char input[100] = {0}; \
+        char input[1024] = {0}; \
         struct string expected[] = { \
             STRING_REF_C(expected1s), \
             STRING_REF_C(expected1f), \
@@ -19,7 +20,7 @@ const char* example_inputs[2] = {
             STRING_REF_C(expected2f), \
         }; \
         for (int i = 0; i < 4; i++) { \
-            snprintf(input, 100, "input/dec" #day "-%s.txt", example_inputs[i % 2]); \
+            snprintf(input, 1024, PROJECT_DIR "/input/dec" #day "-%s.txt", example_inputs[i % 2]); \
             struct string actual = dec##day##_run(STRING_REF_FROM_C(input), i / 2 + 1); \
             tests++; \
             if (!STRING_EQUAL(actual, expected[i])) { \

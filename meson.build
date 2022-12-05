@@ -32,8 +32,23 @@ executable(
     dependencies: aoc_dep,
 )
 
-executable(
+data = configuration_data()
+data.set('PROJECT_DIR', meson.current_source_dir())
+
+configure_file(
+    input: 'config.h.in',
+    output: 'aoc2022_config.h',
+    configuration: data,
+)
+
+test_exe = executable(
     'aoc-2022-test',
     'test' / 'main.c',
     dependencies: aoc_dep,
+)
+
+test(
+    'aoc-2022-test',
+    test_exe,
+    timeout: 10,
 )
