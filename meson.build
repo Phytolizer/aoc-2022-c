@@ -16,6 +16,7 @@ aoc_lib = library(
     'src' / 'better_getline.c',
     'src' / 'string.c',
     'src' / 'dec01.c',
+    'src' / 'dec02.c',
     include_directories: include_directories('include'),
     install: true,
 )

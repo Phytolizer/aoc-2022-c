@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "aoc/dec01.h"
+#include "aoc/dec02.h"
 #include "aoc/string.h"
 
 const char* example_inputs[2] = {
@@ -29,10 +30,9 @@ const char* example_inputs[2] = {
             if (!STRING_EQUAL(actual, expected[i])) { \
                 fprintf( \
                     stderr, \
-                    "Test failed for day " #day " part %d, %s input: expected " STRING_FMT \
-                    ", got " STRING_FMT "\n", \
+                    #day ".%d.%-6s: expected " STRING_FMT ", got " STRING_FMT "\n", \
                     i / 2 + 1, \
-                    example_inputs[i / 2], \
+                    example_inputs[i % 2], \
                     STRING_ARG(expected[i]), \
                     STRING_ARG(actual) \
                 ); \
@@ -45,6 +45,7 @@ int main(void) {
     int tests = 0;
     int failures = 0;
     AOC_TEST(01, "24000", "69289", "45000", "205615");
+    AOC_TEST(02, "15", "14531", "12", "11258");
 
     if (failures) {
         fprintf(stderr, "%d tests failed\n", failures);

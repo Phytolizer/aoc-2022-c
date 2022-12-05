@@ -21,7 +21,7 @@ struct string dec01_run(struct string path, size_t part) {
 
     FILE* f = fopen(path.data, "r");
     if (f == NULL) {
-        fprintf(stderr, "Failed to open file: %s\n", path.data);
+        fprintf(stderr, "Failed to open file: " STRING_FMT "\n", STRING_ARG(path));
         exit(1);
     }
 
