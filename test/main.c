@@ -10,9 +10,12 @@ const char* example_inputs[2] = {
     "full",
 };
 
+#define BASE_DIR PROJECT_DIR "/input/dec"
+#define INPUT_LEN (sizeof(BASE_DIR) + 100)
+
 #define AOC_TEST(day, expected1s, expected1f, expected2s, expected2f) \
     do { \
-        char input[1024] = {0}; \
+        char input[INPUT_LEN] = {0}; \
         struct string expected[] = { \
             STRING_REF_C(expected1s), \
             STRING_REF_C(expected1f), \
@@ -20,7 +23,7 @@ const char* example_inputs[2] = {
             STRING_REF_C(expected2f), \
         }; \
         for (int i = 0; i < 4; i++) { \
-            snprintf(input, 1024, PROJECT_DIR "/input/dec" #day "-%s.txt", example_inputs[i % 2]); \
+            snprintf(input, INPUT_LEN, BASE_DIR #day "-%s.txt", example_inputs[i % 2]); \
             struct string actual = dec##day##_run(STRING_REF_FROM_C(input), i / 2 + 1); \
             tests++; \
             if (!STRING_EQUAL(actual, expected[i])) { \
