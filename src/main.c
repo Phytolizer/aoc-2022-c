@@ -40,7 +40,7 @@ int main(int argc, char** argv) {
         return 1;
     }
 
-    struct string day_path = string_printf("input/dec%02ld.txt", day);
+    struct string day_path = string_printf("input/dec%02ld-full.txt", day);
 
     switch (day) {
         case 1: {

@@ -21,8 +21,7 @@ struct string {
 
 #define STRING_REF(str) ((struct string)STRING_REF_C(str))
 
-#define STRING_REF_FROM_C(str) \
-    { (str), strlen(str), strlen(str), true }
+#define STRING_REF_FROM_C(str) ((struct string){(str), strlen(str), strlen(str), true})
 
 #define STRING_REF_DATA(str, length) \
     { (str), (length), (length), true }
@@ -39,6 +38,8 @@ struct string {
         (str).length = 0; \
         (str).capacity = 0; \
     } while (0)
+
+#define STRING_EQUAL(a, b) ((a).length == (b).length && memcmp((a).data, (b).data, (a).length) == 0)
 
 struct string string_printf(const char* fmt, ...);
 
