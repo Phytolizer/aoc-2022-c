@@ -45,6 +45,8 @@ struct string dec01_run(struct string path, size_t part) {
         curr_total += num;
     }
 
+    STRING_FREE(line);
+
     if (curr_total != 0) {
         add_max(max, curr_total);
     }

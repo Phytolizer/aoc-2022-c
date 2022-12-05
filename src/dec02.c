@@ -65,17 +65,17 @@ struct string dec02_run(struct string path, size_t part) {
         exit(1);
     }
 
-    struct string buffer = EMPTY_STRING;
+    struct string line = EMPTY_STRING;
 
     size_t total = 0;
-    while (better_getline(&buffer, f)) {
-        if (buffer.length == 0) {
+    while (better_getline(&line, f)) {
+        if (line.length == 0) {
             continue;
         }
 
-        assert(buffer.length == 3);
-        char a = buffer.data[0];
-        char b = buffer.data[2];
+        assert(line.length == 3);
+        char a = line.data[0];
+        char b = line.data[2];
 
         Shape shape_a = text_to_shape[(size_t)a];
         assert(shape_a != 0);
@@ -94,6 +94,8 @@ struct string dec02_run(struct string path, size_t part) {
             }
         }
     }
+
+    STRING_FREE(line);
 
     return string_printf("%zu", total);
 }

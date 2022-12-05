@@ -14,7 +14,7 @@ struct string {
 };
 
 #define EMPTY_STRING \
-    { NULL, 0, 0, true }
+    { NULL, 0, 0, false }
 
 #define STRING_REF_C(str) \
     { (str), sizeof(str) - 1, sizeof(str) - 1, true }

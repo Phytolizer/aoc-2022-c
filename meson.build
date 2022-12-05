@@ -6,6 +6,7 @@ project(
         'c_std=gnu11',
         'warning_level=3',
         'default_library=static',
+        'b_sanitize=address',
     ],
 )
 
