@@ -4,6 +4,18 @@
 
 #include "aoc/better_getline.h"
 
+static void add_max(size_t max[static 3], size_t num) {
+    for (size_t i = 0; i < 3; i++) {
+        if (num > max[i]) {
+            for (size_t j = 2; j > i; j--) {
+                max[j] = max[j - 1];
+            }
+            max[i] = num;
+            break;
+        }
+    }
+}
+
 struct string dec01_run(struct string path, size_t part) {
     struct string line = EMPTY_STRING;
 
@@ -14,13 +26,11 @@ struct string dec01_run(struct string path, size_t part) {
     }
 
     size_t curr_total = 0;
-    size_t max = 0;
+    size_t max[3] = {0};
 
     while (better_getline(&line, f)) {
         if (line.length == 0) {
-            if (curr_total > max) {
-                max = curr_total;
-            }
+            add_max(max, curr_total);
             curr_total = 0;
             continue;
         }
@@ -35,7 +45,18 @@ struct string dec01_run(struct string path, size_t part) {
         curr_total += num;
     }
 
+    if (curr_total != 0) {
+        add_max(max, curr_total);
+    }
+
     fclose(f);
 
-    return string_printf("%zu", max);
+    switch (part) {
+        case 1:
+            return string_printf("%zu", max[0]);
+        case 2:
+            return string_printf("%zu", max[0] + max[1] + max[2]);
+        default:
+            abort();
+    }
 }

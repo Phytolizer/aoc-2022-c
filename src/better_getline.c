@@ -8,6 +8,10 @@ bool better_getline(struct string* buffer, FILE* stream) {
         return false;
     }
 
+    if (len == 0) {
+        return true;
+    }
+
     buffer->length = len - 1;
     return true;
 }
