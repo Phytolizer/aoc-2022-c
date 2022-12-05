@@ -16,13 +16,13 @@ aoc_lib = library(
     'src' / 'better_getline.c',
     'src' / 'string.c',
     'src' / 'dec01.c',
-    include_directories: 'include',
+    include_directories: include_directories('include'),
     install: true,
 )
 
 aoc_dep = declare_dependency(
     link_with: aoc_lib,
-    include_directories: 'include',
+    include_directories: include_directories('include'),
 )
 
 executable(
