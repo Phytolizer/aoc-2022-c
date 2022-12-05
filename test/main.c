@@ -38,6 +38,7 @@ const char* example_inputs[2] = {
                 ); \
                 failures++; \
             } \
+            STRING_FREE(actual); \
         } \
     } while (0)
 
