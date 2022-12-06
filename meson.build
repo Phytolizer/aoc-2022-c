@@ -10,7 +10,10 @@ project(
     ],
 )
 
-add_project_arguments('-Wmissing-prototypes', language: 'c')
+cc = meson.get_compiler('c')
+if cc.has_argument('-Wmissing-prototypes')
+    add_project_arguments('-Wmissing-prototypes', language: 'c')
+endif
 
 aoc_lib = library(
     'aoc2022',
