@@ -10,8 +10,6 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [""]
-        asan: [false]
         include:
           - os: ubuntu-latest
             asan: "-Db_sanitize=address"
