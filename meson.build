@@ -14,6 +14,10 @@ if cc.has_argument('-Wmissing-prototypes')
     add_project_arguments('-Wmissing-prototypes', language: 'c')
 endif
 
+if target_machine.system() == 'windows'
+    add_project_arguments('-D_CRT_SECURE_NO_WARNINGS', language: 'c')
+endif
+
 aoc_lib = library(
     'aoc2022',
     'src' / 'better_getline.c',

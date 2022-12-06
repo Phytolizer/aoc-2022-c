@@ -4,7 +4,8 @@
 
 #include "aoc/better_getline.h"
 
-static void add_max(size_t max[static 3], size_t num) {
+/// max must point to 3 elements
+static void add_max(size_t* max, size_t num) {
     for (size_t i = 0; i < 3; i++) {
         if (num > max[i]) {
             for (size_t j = 2; j > i; j--) {
