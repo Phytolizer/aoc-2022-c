@@ -32,11 +32,11 @@ static SSize nonstd_getdelim(char** linep, size_t* n, int delim, FILE* fp) {
             *n += 128;
             *linep = temp;
         }
-        (*linep)[i++] = ch;
+        (*linep)[i++] = (char)ch;
         if (ch == delim) break;
     }
     (*linep)[i] = '\0';
-    return !i && ch == EOF ? -1 : (ssize_t)i;
+    return !i && ch == EOF ? -1 : (SSize)i;
 }
 
 static SSize nonstd_getline(char** linep, size_t* n, FILE* fp) {
