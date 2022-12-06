@@ -41,7 +41,8 @@ executable(
 )
 
 data = configuration_data()
-data.set('PROJECT_DIR', meson.current_source_dir())
+srcdir = meson.current_source_dir().replace('\\', '/')
+data.set('PROJECT_DIR', srcdir)
 
 configure_file(
     input: 'config.h.in',
