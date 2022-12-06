@@ -10,7 +10,15 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [""]
+        asan: [false]
+        include:
+          - os: ubuntu-latest
+            asan: "-Db_sanitize=address"
+          - os: macos-latest
+            asan: ""
+          - os: windows-latest
+            asan: ""
 
     runs-on: ${{matrix.os}}
 
@@ -21,3 +29,4 @@ jobs:
       with:
         meson-version: 0.64.1
         action: test
+        setup-options: ${{matrix.asan}}
