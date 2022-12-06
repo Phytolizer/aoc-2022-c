@@ -13,12 +13,18 @@ jobs:
         include:
           - os: ubuntu-latest
             asan: "-Db_sanitize=address"
+            cc: "gcc"
           - os: macos-latest
             asan: ""
+            cc: "clang"
           - os: windows-latest
             asan: ""
+            cc: "cl"
 
     runs-on: ${{matrix.os}}
+
+    env:
+      CC: ${{matrix.cc}}
 
     steps:
     - uses: actions/checkout@v3
