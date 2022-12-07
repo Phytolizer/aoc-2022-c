@@ -38,4 +38,10 @@
 #define BUFFER_REF(Ptr, Length) \
     { .data = (Ptr), .length = (Length), .capacity = (Length), }
 
+#define BUFFER_FROM_ARRAY(Array) \
+    { \
+        .data = (Array), .length = sizeof(Array) / sizeof(*(Array)), \
+        .capacity = sizeof(Array) / sizeof(*(Array)), \
+    }
+
 #endif  // AOC_BUFFER_H_

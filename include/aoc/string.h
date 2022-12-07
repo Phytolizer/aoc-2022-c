@@ -41,6 +41,12 @@ struct string {
 
 #define STRING_EQUAL(a, b) ((a).length == (b).length && memcmp((a).data, (b).data, (a).length) == 0)
 
+#define STRING_SLICE(str, start, end) \
+    { \
+        .data = (str).data + (start), .length = (end) - (start), .capacity = (end) - (start), \
+        .is_ref = true, \
+    }
+
 struct string string_printf(const char* fmt, ...);
 
 #define STRING_FMT "%.*s"

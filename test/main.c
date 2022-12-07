@@ -4,6 +4,7 @@
 
 #include "aoc/dec01.h"
 #include "aoc/dec02.h"
+#include "aoc/dec03.h"
 #include "aoc/string.h"
 
 const char* example_inputs[2] = {
@@ -47,6 +48,7 @@ int main(void) {
     int failures = 0;
     AOC_TEST(01, "24000", "69289", "45000", "205615");
     AOC_TEST(02, "15", "14531", "12", "11258");
+    AOC_TEST(03, "157", "7766", "70", "2415");
 
     if (failures) {
         fprintf(stderr, "%d tests failed\n", failures);

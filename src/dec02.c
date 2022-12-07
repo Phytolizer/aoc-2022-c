@@ -95,6 +95,7 @@ struct string dec02_run(struct string path, size_t part) {
         }
     }
 
+    fclose(f);
     STRING_FREE(line);
 
     return string_printf("%zu", total);
