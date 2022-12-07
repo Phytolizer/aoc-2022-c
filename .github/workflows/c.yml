@@ -31,7 +31,5 @@ jobs:
       with:
         meson-version: 0.64.1
         action: test
+        options: --verbose
         setup-options: ${{matrix.asan}}
-    - name: Print test log
-      if: ${{ always() }}
-      run: cat build/meson-logs/testlog.txt
