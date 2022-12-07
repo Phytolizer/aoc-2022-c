@@ -63,13 +63,6 @@ static char bitset_to_priority(struct bitset bs) {
     return 0;
 }
 
-static void show_bitset(struct bitset bs) {
-    for (size_t i = 0; i < sizeof(bs.v); i++) {
-        printf("%d", bs.v[i]);
-    }
-    printf("\n");
-}
-
 struct string dec03_run(struct string path, size_t part) {
     FILE* f = fopen(path.data, "r");
     if (f == NULL) {
