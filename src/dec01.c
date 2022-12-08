@@ -5,16 +5,28 @@
 #include "aoc/better_getline.h"
 
 /// max must point to 3 elements
-static void add_max(size_t* max, size_t num) {
-    for (size_t i = 0; i < 3; i++) {
-        if (num > max[i]) {
-            for (size_t j = 2; j > i; j--) {
-                max[j] = max[j - 1];
-            }
-            max[i] = num;
-            break;
+static void add_max(size_t* maxes, size_t num) {
+    size_t min = maxes[0];
+    size_t min_i = 0;
+    for (size_t i = 1; i < 3; i++) {
+        if (maxes[i] < min) {
+            min = maxes[i];
+            min_i = i;
         }
     }
+    if (num > min) {
+        maxes[min_i] = num;
+    }
+}
+
+static size_t max_of(size_t* maxes) {
+    size_t max = maxes[0];
+    for (size_t i = 1; i < 3; i++) {
+        if (maxes[i] > max) {
+            max = maxes[i];
+        }
+    }
+    return max;
 }
 
 struct string dec01_run(struct string path, size_t part) {
@@ -27,11 +39,11 @@ struct string dec01_run(struct string path, size_t part) {
     }
 
     size_t curr_total = 0;
-    size_t max[3] = {0};
+    size_t maxes[3] = {0};
 
     while (better_getline(&line, f)) {
         if (line.length == 0) {
-            add_max(max, curr_total);
+            add_max(maxes, curr_total);
             curr_total = 0;
             continue;
         }
@@ -49,16 +61,16 @@ struct string dec01_run(struct string path, size_t part) {
     STRING_FREE(line);
 
     if (curr_total != 0) {
-        add_max(max, curr_total);
+        add_max(maxes, curr_total);
     }
 
     fclose(f);
 
     switch (part) {
         case 1:
-            return string_printf("%zu", max[0]);
+            return string_printf("%zu", max_of(maxes));
         case 2:
-            return string_printf("%zu", max[0] + max[1] + max[2]);
+            return string_printf("%zu", maxes[0] + maxes[1] + maxes[2]);
         default:
             abort();
     }
