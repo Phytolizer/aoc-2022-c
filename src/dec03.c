@@ -48,7 +48,7 @@ static struct bitset bitset_product(struct bitset_buffer bss) {
     struct bitset bs = bss.data[0];
     for (size_t i = 1; i < bss.length; i++) {
         for (size_t j = 0; j < sizeof(bs.v); j++) {
-            bs.v[j] *= bss.data[i].v[j];
+            bs.v[j] = bs.v[j] && bss.data[i].v[j];
         }
     }
     return bs;
