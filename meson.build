@@ -26,6 +26,7 @@ aoc_lib = library(
     'src' / 'dec02.c',
     'src' / 'dec03.c',
     'src' / 'dec04.c',
+    'src' / 'dec05.c',
     include_directories: include_directories('include'),
     install: true,
 )
